@@ -42,7 +42,7 @@ function graceful_shutdown(app)
             if(err)
             {
                 console.log(" Error occured while shutting down application ")  
-                console.log(e)  
+                console.log(e)
                 process.exit(1) 
             }
             else 

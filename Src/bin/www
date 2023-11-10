@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('node-api:server');
 var http = require('http');
 var graceful_shutdown = require('../lib/graceful_shutdown/graceful_shutdown')
+var logger = require('../lib/logger/logger')
 
 /**
  * Get port from environment and store in Express.
@@ -30,8 +31,22 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-process.on('SIGINT', ()=>{ graceful_shutdown(server) })
-process.on('SIGTERM', ()=>{ graceful_shutdown(server) } ) 
+
+process.on('SIGINT',()=>{
+    logger.fatal('Application Shutdown: SIGINT ') 
+    graceful_shutdown(server) 
+})
+
+process.on('SIGTERM', ()=>{
+    logger.fatal(' Application Shutdown: SIGTERM ') 
+    graceful_shutdown( server ) 
+})
+
+process.on('uncaughtException',(err)=>{
+    logger.fatal(err,' Application Shutdown: UNCAUGHT EXCEPTION ')
+    graceful_shutdown(server)
+})
+
 
 /**
  * Normalize a port into a number, string, or false.
@@ -92,3 +107,29 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+
+
+logger.info(' Application Started ')
+logger.debug(' Debug ')
+logger.trace(' Trace ')
+logger.fatal(' fatal ')
+logger.warn(' Warn ') 
+logger.error(' Error ') 
+
+const newErr = new Error('This is a new error')
+logger.error(
+  { err: newErr, transactionId: 'l232qa323', user_id:'3l239q9' },
+  'Transaction Error'
+)
+
+
+function myErr()
+{
+  const userId = 'fva232' 
+  const childLogger = logger.child({ userId })
+  childLogger.trace(' In an anonymous function ') 
+}
+
+
+myErr() 
