@@ -6,7 +6,7 @@ function AppMonitoring(app)
     try 
     {
         Sentry.init({
-            dsn: 'https://9acb8f71bf93cf2a0a8f9cb934492df0@o4506200956338176.ingest.sentry.io/4506200959287296',
+            dsn: process.env.SENTRY_KEY,
             integrations: [
               // enable HTTP calls tracing
               new Sentry.Integrations.Http({ tracing: true }),
