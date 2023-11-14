@@ -110,19 +110,7 @@ function onListening() {
 
 
 
-logger.info(' Application Started ')
-logger.debug(' Debug ')
-logger.trace(' Trace ')
-logger.fatal(' fatal ')
-logger.warn(' Warn ') 
-logger.error(' Error ') 
-
-const newErr = new Error('This is a new error')
-logger.error(
-  { err: newErr, transactionId: 'l232qa323', user_id:'3l239q9' },
-  'Transaction Error'
-)
-
+logger.info(' Application Started ') 
 
 function myErr()
 {
@@ -131,5 +119,3 @@ function myErr()
   childLogger.trace(' In an anonymous function ') 
 }
 
-
-myErr() 
