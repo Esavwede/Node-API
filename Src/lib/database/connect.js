@@ -1,5 +1,4 @@
 
-const { options } = require('../../routes')
 const logger = require('../logger/logger') 
 const mongoose = require('mongoose') 
 
