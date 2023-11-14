@@ -116,3 +116,13 @@ function onListening() {
 }
 
 
+
+logger.info(' Application Started ') 
+
+function myErr()
+{
+  const userId = 'fva232' 
+  const childLogger = logger.child({ userId })
+  childLogger.trace(' In an anonymous function ') 
+}
+

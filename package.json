@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node --env-file .env ./Src/bin/www",
-    "start:dev": "nodemon --env-file .env ./Src/bin/www | npx pino-pretty"
+    "start:dev":"nodemon --env-file .env ./Src/bin/www | npx pino-pretty"
   },
   "dependencies": {
     "@sentry/cli": "^2.21.3",
