@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --env-file .env ./Src/bin/www"
+    "start": "node --env-file .env ./Src/bin/www",
+    "start:dev": "nodemon --env-file .env ./Src/bin/www | npx pino-pretty"
   },
   "dependencies": {
     "@sentry/cli": "^2.21.3",
@@ -14,9 +15,12 @@
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
     "morgan": "~1.9.1",
     "pino": "^8.16.1",
-    "pino-http": "^8.5.1"
+    "pino-http": "^8.5.1",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1",

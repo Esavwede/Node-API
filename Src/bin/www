@@ -8,7 +8,8 @@ var app = require('../app');
 var debug = require('debug')('node-api:server');
 var http = require('http');
 var graceful_shutdown = require('../lib/graceful_shutdown/graceful_shutdown')
-var logger = require('../lib/logger/logger')
+var logger = require('../lib/logger/logger') 
+var connectToDB = require('../lib/database/connect') 
 
 /**
  * Get port from environment and store in Express.
@@ -27,10 +28,16 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
+
+
+
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+logger.info('Application Started')
+
+connectToDB() 
 
 process.on('SIGINT',()=>{
     logger.fatal('Application Shutdown: SIGINT ') 
@@ -109,27 +116,3 @@ function onListening() {
 }
 
 
-
-logger.info(' Application Started ')
-logger.debug(' Debug ')
-logger.trace(' Trace ')
-logger.fatal(' fatal ')
-logger.warn(' Warn ') 
-logger.error(' Error ') 
-
-const newErr = new Error('This is a new error')
-logger.error(
-  { err: newErr, transactionId: 'l232qa323', user_id:'3l239q9' },
-  'Transaction Error'
-)
-
-
-function myErr()
-{
-  const userId = 'fva232' 
-  const childLogger = logger.child({ userId })
-  childLogger.trace(' In an anonymous function ') 
-}
-
-
-myErr() 
