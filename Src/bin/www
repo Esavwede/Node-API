@@ -35,7 +35,6 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-logger.info('Application Started')
 
 connectToDB() 
 
@@ -119,10 +118,4 @@ function onListening() {
 
 logger.info(' Application Started ') 
 
-function myErr()
-{
-  const userId = 'fva232' 
-  const childLogger = logger.child({ userId })
-  childLogger.trace(' In an anonymous function ') 
-}
 

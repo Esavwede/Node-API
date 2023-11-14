@@ -1,9 +1,20 @@
-var express = require('express');
-var router = express.Router();
+var buildAuthRoutes = require('./auth/auth.route')
+var logger = require('../lib/logger/logger')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
-module.exports = router;
+module.exports = function(app)
+{ 
+  try 
+  {
+    
+    logger.info(" Building Application Routes ")
+
+        buildAuthRoutes(app)
+
+    logger.info(" Application Routes Built ")
+  }
+  catch(e)
+  {
+    logger.error(e,"Error occured while building Application Routes ")
+  }
+} 
