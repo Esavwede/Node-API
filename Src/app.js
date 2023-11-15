@@ -4,12 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var AppMonitoring = require('./lib/monitoring/sentry')
-
+var _logger = require('./lib/logger/logger') 
 
 var Routes = require('./routes/index')
 
 var app = express();
 
+_logger.info(` Starting Application in ${ process.env.NODE_ENV }`)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -5,6 +5,12 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema(
     {
+        user_id:
+        {
+            type: String, 
+            required: true, 
+            unique: true 
+        },
         firstname:
         {
             type: String, 
@@ -43,3 +49,7 @@ const UserSchema = new Schema(
 
 const User = mongoose.model('user', UserSchema  )
 module.exports = User 
+
+
+// Generate Email Verification Code 
+// Hash Password 
